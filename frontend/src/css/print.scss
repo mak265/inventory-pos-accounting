@@ -1,0 +1,162 @@
+// Print-specific styles for report output
+// Optimized for A4 (210mm × 297mm) and Letter (216mm × 279mm) paper sizes
+
+@media print {
+  // === Page Setup ===
+  @page {
+    size: A4;
+    margin: 15mm 10mm 20mm 10mm;
+  }
+
+  // === Hide non-print UI elements ===
+  .q-header,
+  .q-drawer,
+  .q-footer,
+  .q-page-container > .q-page > .q-btn,
+  .no-print,
+  .print-hide {
+    display: none !important;
+  }
+
+  // Hide all interactive controls inside print layouts
+  .print-layout .print-hide,
+  .print-layout .q-field,
+  .print-layout .q-select,
+  .print-layout .q-btn:not(.print-show) {
+    display: none !important;
+  }
+
+  // === Reset layout for paper ===
+  body {
+    margin: 0;
+    padding: 0;
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  .q-page-container {
+    padding: 0 !important;
+  }
+
+  .q-page {
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  .q-pa-md {
+    padding: 0 !important;
+  }
+
+  // === Card styling for print ===
+  .q-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    break-inside: avoid;
+  }
+
+  .q-card__section {
+    padding: 8px !important;
+  }
+
+  // === Table styling for print ===
+  .q-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+
+    th, td {
+      border: 1px solid #999 !important;
+      padding: 4px 8px !important;
+      font-size: 10pt;
+    }
+
+    th {
+      background-color: #f0f0f0 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      font-weight: bold;
+    }
+  }
+
+  // === Page break helpers ===
+  .print-page-break-before {
+    break-before: page;
+  }
+
+  .print-page-break-after {
+    break-after: page;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+  }
+
+  // === Print header and footer ===
+  .print-header {
+    display: block !important;
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+
+  .print-header__title {
+    font-size: 16pt;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .print-header__date {
+    font-size: 9pt;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 9pt;
+    color: #666;
+    border-top: 1px solid #ccc;
+    padding-top: 4px;
+  }
+
+  // === Chart handling ===
+  canvas {
+    max-width: 100% !important;
+    max-height: 250px !important;
+  }
+
+  // === Typography for print ===
+  .text-h4, .text-h5, .text-h6 {
+    color: black !important;
+  }
+
+  // === Ensure content fits page width ===
+  .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+
+  // === Links ===
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+
+  // === Badge colors for print ===
+  .q-badge {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  // === Separator ===
+  .q-separator {
+    border-color: #ccc !important;
+  }
+}

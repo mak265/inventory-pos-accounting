@@ -1,0 +1,89 @@
+{
+  "name": "aberin-pos",
+  "version": "2.0.14",
+  "description": "Aberin Hardware - POS & Inventory System",
+  "main": "main.js",
+  "author": "Aberin Hardware",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "fetch-node-portable": "node fetch-node-portable.cjs",
+    "prebuild-win": "node fetch-node-portable.cjs && node prebuild-check.js",
+    "build-win": "set CSC_IDENTITY_AUTO_DISCOVERY=false&& set USE_HARD_LINKS=false&& set CI=true&& electron-builder --win --x64",
+    "build-mac": "node prebuild-check.js && electron-builder --mac",
+    "build-linux": "node prebuild-check.js && electron-builder --linux",
+    "build:all:win": "set CSC_IDENTITY_AUTO_DISCOVERY=false&& set USE_HARD_LINKS=false&& set CI=true&& node fetch-node-portable.cjs && node prebuild-check.js && electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.aberin.pos",
+    "productName": "Aberin POS",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "cloud-sync.js",
+      "prebuild-check.js",
+      "fetch-node-portable.cjs"
+    ],
+    "asar": false,
+    "extraResources": [
+      {
+        "from": "../backend/dist",
+        "to": "backend/dist"
+      },
+      {
+        "from": "../backend/node_modules",
+        "to": "backend/node_modules"
+      },
+      {
+        "from": "../backend/package.json",
+        "to": "backend/package.json"
+      },
+      {
+        "from": "../frontend/dist/spa",
+        "to": "frontend/dist/spa"
+      },
+      {
+        "from": "portable/node.exe",
+        "to": "node.exe"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "sign": false,
+      "signDlls": false,
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false,
+      "artifactName": "Aberin POS Setup ${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "perMachine": false,
+      "unicode": true
+    },
+    "forceCodeSigning": false,
+    "electronLanguages": ["en-US"],
+    "compression": "normal",
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  }
+}

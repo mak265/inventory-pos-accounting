@@ -1,0 +1,17 @@
+{
+  "name": "Aberin Hardware POS",
+  "short_name": "Aberin POS",
+  "description": "Aberin Hardware Inventory & POS System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1f36",
+  "theme_color": "#1a1f36",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/favicon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ]
+}
